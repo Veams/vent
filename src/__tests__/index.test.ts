@@ -1,4 +1,4 @@
-import createEventHandling from './events-handler';
+import createEventHandling from '../';
 
 describe('Event Handler', () => {
   it('notifies subscriber', (done) => {

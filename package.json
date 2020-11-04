@@ -1,11 +1,14 @@
 {
-  "name": "@veams/plugin-vent",
-  "version": "1.1.0",
-  "description": "The Veams Vent Plugin is a global publish and subscribe object. You can use this plugin to communicate between modules independently.",
+  "name": "@veams/vent",
+  "version": "1.0.0",
+  "description": "Vent is a global publish and subscribe object. You can use this to communicate between modules independently in an easy way.",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "scripts": {
+    "clear:app": "rimraf lib/**",
+    "prebuild": "npm run clear:app",
     "build": "tsc --project tsconfig.json --outDir lib --declarationDir lib --declaration --module commonjs",
+    "prestart": "npm run clear:app",
     "start": "tsc --project tsconfig.json --watch --outDir lib --declarationDir lib --declaration --module commonjs",
     "prepublish": "npm run build",
     "lint:scripts": "eslint --fix \"src/**/*.ts\"",
@@ -59,21 +62,25 @@
     "jest-coverage-badges": "^1.1.2",
     "lint-staged": "^10.2.12",
     "prettier": "^2.1.0",
+    "rimraf": "^3.0.2",
     "ts-jest": "^26.2.0",
     "typescript": "^4.0.5"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/veams/plugin-vent.git"
+    "url": "https://github.com/veams/vent.git"
   },
   "keywords": [
     "veams",
+    "events",
+    "publish and subscribe",
+    "pubsub",
     "veams-plugin"
   ],
   "author": "Sebastian Fitzner",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/veams/plugin-vent/issues"
+    "url": "https://github.com/veams/vent/issues"
   },
   "homepage": "http://veams.org/",
   "dependencies": {
