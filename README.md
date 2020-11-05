@@ -3,11 +3,9 @@
 [//]: #     ({{#wrapWith "grid-row"}})
 [//]: #         ({{#wrapWith "grid-col" colClasses="is-col-tablet-l-8"}})
 
-# Veams Vent Plugin (`@veams/vent`)
+# Vent (`@veams/vent`)
 
-Vent is a global publish and subscribe object. You can use this to communicate between modules independently.
-
-TypeScript is supported. 
+Vent is a simple publish and subscribe system you can use to communicate between modules independently.
 
 ---------------------
 
@@ -36,9 +34,9 @@ Use Vent to trigger events globally and subscribe to it!
 ### Default events like `click`, `resize` and more
 
 ``` js
-import createEventHandling from '@veams/vent';
+import createVent from '@veams/vent';
 
-const Vent = createEventHandling(); // If using the plugin you do not need this and have the functionality available in the namespace (like `Veams.Vent`)
+const Vent = createVent(); // If using the plugin you do not need this and have the functionality available in the namespace (like `Veams.Vent`)
 
 // Let's add a throttle to the scroll event and trigger that
 window.onscroll = Veams.helpers.throttle((e) => {
@@ -54,9 +52,9 @@ Vent.subscribe('scroll', () => {
 ### Custom events
 
 ``` js
-import createEventHandling from '@veams/vent';
+import createVent from '@veams/vent';
 
-const Vent = createEventHandling(); // If using the plugin you do not need this and have the functionality available in the namespace (like `Veams.Vent`)
+const Vent = createVent(); // If using the plugin you do not need this and have the functionality available in the namespace (like `Veams.Vent`)
 
 const dataHandler = (data) => {
     // Make something with the data ...
