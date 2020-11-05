@@ -17,7 +17,7 @@
     "test:coverage": "cross-env BABEL_ENV=client jest --coverage && jest-coverage-badges",
     "preversion": "npm test",
     "version": "npm run build && git add .",
-    "postversion": "git push && git push --tags && npm publish"
+    "postversion": "git push && git push --tags && npm publish --access public"
   },
   "husky": {
     "hooks": {
