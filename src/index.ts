@@ -11,17 +11,20 @@
  */
 type Callback = (data: any) => void;
 
-export interface EventHandler {
-  publish: (this: EventHandler, topic: string, data?: any, scope?) => void;
-  trigger: EventHandler['publish'];
-  subscribe: (string, callback: Callback) => void;
-  on: EventHandler['subscribe'];
-  unsubscribe: (topic: string, handle: Callback, completly?: boolean) => void;
-  off: EventHandler['unsubscribe'];
+export interface EventHandler<E> {
+  publish: (this: EventHandler<E>, topic: E, data?: any, scope?) => void;
+  trigger: EventHandler<E>['publish'];
+  subscribe: (string: E, callback: Callback) => void;
+  on: EventHandler<E>['subscribe'];
+  unsubscribe: (topic: E, handle: Callback, completly?: boolean) => void;
+  off: EventHandler<E>['unsubscribe'];
 }
 
-export default function createEventHandling(): EventHandler {
-  const cache = {},
+export default function createEventHandling<E>(): EventHandler<E> {
+  const cache: Record<Extract<E, string>, Callback[]> = {} as Record<
+      Extract<E, string>,
+      Callback[]
+    >,
     /**
      *    Events.publish
      *    e.g.:
@@ -33,7 +36,12 @@ export default function createEventHandling(): EventHandler {
      *    @param data {Object|String|Number|Null}
      *    @param scope {Object} Optional
      */
-    publish: EventHandler['publish'] = function (this, topic, data, scope = this) {
+    publish: EventHandler<Extract<E, string>>['publish'] = function (
+      this,
+      topic,
+      data,
+      scope = this
+    ) {
       if (cache[topic]) {
         const thisEvents = cache[topic];
         let i = thisEvents.length - 1;
@@ -52,7 +60,10 @@ export default function createEventHandling(): EventHandler {
      *    @param topic {String}
      *    @param callback {Function}
      */
-    subscribe: EventHandler['subscribe'] = function (topic, callback) {
+    subscribe: EventHandler<Extract<E, string>>['subscribe'] = function (
+      topic: Extract<E, string>,
+      callback
+    ) {
       const topics = topic.split(' ');
 
       for (let i = 0; i < topics.length; i++) {
@@ -77,7 +88,11 @@ export default function createEventHandling(): EventHandler {
      *    @param handle {Function}
      *    @param completly {boolean}
      */
-    unsubscribe: EventHandler['unsubscribe'] = function (topic, handle, completly = false) {
+    unsubscribe: EventHandler<Extract<E, string>>['unsubscribe'] = function (
+      topic: Extract<E, string>,
+      handle,
+      completly = false
+    ) {
       let i = cache[topic].length - 1;
 
       if (cache[topic]) {

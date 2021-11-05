@@ -1,8 +1,10 @@
 import createEventHandling from '../';
 
+type Events = 'onCustomChange' | 'onPurposeChange';
+
 describe('Event Handler', () => {
   it('notifies subscriber', (done) => {
-    const Vent = createEventHandling();
+    const Vent = createEventHandling<Events>();
 
     Vent.subscribe('onCustomChange', (val) => {
       expect(val).toBe('foo');
@@ -24,10 +26,10 @@ describe('Event Handler', () => {
   });
 
   it('calls the subscriber function on multiple events', () => {
-    const Vent = createEventHandling();
+    const Vent = createEventHandling<Events>();
     const stub = jest.fn();
 
-    Vent.subscribe('onCustomChange onPurposeChange', stub);
+    Vent.subscribe('onCustomChange onPurposeChange' as 'onCustomChange', stub);
     Vent.publish('onCustomChange', 'foo');
     Vent.publish('onPurposeChange', 'foo');
 
@@ -39,8 +41,8 @@ describe('Event Handler', () => {
     const stub = jest.fn();
 
     Vent.subscribe('onCustomChange', stub);
-    Vent.subscribe('test' as 'onCustomChange', stub);
-    Vent.subscribe('test2' as 'onCustomChange', stub);
+    Vent.subscribe('test', stub);
+    Vent.subscribe('test2', stub);
     Vent.publish('onCustomChange', 'foo');
 
     expect(stub).toHaveBeenCalledTimes(1);
