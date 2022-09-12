@@ -1,7 +1,6 @@
-module.exports = {
+export default {
   preset: 'ts-jest',
   verbose: true,
-  name: 'ccc',
   moduleFileExtensions: ['js', 'ts'],
   transformIgnorePatterns: ['<rootDir>/node_modules/'],
   coverageDirectory: './coverage/',
