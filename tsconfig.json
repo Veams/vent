@@ -1,10 +1,8 @@
 {
   "compilerOptions": {
-    "outDir": "./lib/",
     "module": "esnext",
     "target": "esnext",
     "sourceMap": true,
-    "declaration": true,
     "noImplicitAny": false,
     "moduleResolution": "node",
     "esModuleInterop": true,
@@ -20,6 +18,7 @@
     "src/**/*.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "__tests__"
   ]
 }

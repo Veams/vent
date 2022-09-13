@@ -1,4 +1,4 @@
-import createEventHandling from '../';
+import createEventHandling from '../index.js';
 
 type Events = 'onCustomChange' | 'onPurposeChange';
 

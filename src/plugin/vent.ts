@@ -3,8 +3,8 @@
 /**
  * Imports
  */
-import extend from '@veams/helpers/lib/object/extend';
-import createEventHandling from '../';
+import { extend } from '@veams/helpers';
+import createEventHandling from '../index.js';
 
 /**
  * Interfaces
